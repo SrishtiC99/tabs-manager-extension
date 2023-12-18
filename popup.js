@@ -33,7 +33,12 @@ document.querySelector("ul").append(...elements);
 
 const button = document.querySelector("button");
 button.addEventListener("click", async () => {
-    const tabIds = tabs.map(({ id }) => id);
-    const group = await chrome.tabs.group({ tabIds });
-    await chrome.tabGroups.update(group, { title: "DOCS" });
+
+    const uniqueHostnames = Array.from(new Set(tabs.map(tab => new URL(tab.url).hostname)));
+    // Create tab groups based on unique hostnames
+    for (const hostname of uniqueHostnames) {
+        const tabIds = tabs.filter(tab => new URL(tab.url).hostname === hostname).map(tab => tab.id);
+        const group = await chrome.tabs.group({ tabIds });
+        await chrome.tabGroups.update(group, { title: hostname });
+    }
 })
