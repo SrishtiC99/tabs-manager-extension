@@ -34,11 +34,23 @@ document.querySelector("ul").append(...elements);
 const button = document.querySelector("button");
 button.addEventListener("click", async () => {
 
-    const uniqueHostnames = Array.from(new Set(tabs.map(tab => new URL(tab.url).hostname)));
+    const uniqueMainDomains = Array.from(new Set(tabs.map(tab => getMainDomain(tab.url))));
     // Create tab groups based on unique hostnames
-    for (const hostname of uniqueHostnames) {
-        const tabIds = tabs.filter(tab => new URL(tab.url).hostname === hostname).map(tab => tab.id);
+    for (const mainDomain of uniqueMainDomains) {
+        const tabIds = tabs.filter(tab => getMainDomain(tab.url)  === mainDomain).map(tab => tab.id);
         const group = await chrome.tabs.group({ tabIds });
-        await chrome.tabGroups.update(group, { title: hostname });
+        await chrome.tabGroups.update(group, { title: mainDomain });
     }
 })
+
+// Function to extract the main domain from a URL
+function getMainDomain(url) {
+    try {
+        const hostname = new URL(url).hostname;
+        const parts = hostname.split('.');
+        return parts[parts.length - 2]; // Return the second-to-last part as the main domain
+    } catch (error) {
+        console.error('Error extracting main domain:', error);
+        return null;
+    }
+}
