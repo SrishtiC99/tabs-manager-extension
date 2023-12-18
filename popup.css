@@ -1,11 +1,17 @@
 body {
     width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFDD;
+    font-family: cursive;
 }
 
 ul {
     list-style-type: none;
     padding-inline-start: 0;
-    margin: 1rem 0;
+    margin: 1rem 0 0.5rem 0;
 }
 
 li {
@@ -20,7 +26,28 @@ li:nth-child(even) {
     background: #ffffff;
 }
 
-h3,
+h1 {
+    margin-top: 0;
+    color: #016A70;
+}
+
+h4,
 p {
     margin: 0;
+}
+
+h4 {
+    color: #016A70;
+}
+
+p {
+    color: #A2C579;
+}
+
+button {
+    background-color: #D2DE32;
+    color: #016A70;
+    border-style: hidden;
+    padding: 1.5%;
+    font-family: cursive;
 }
