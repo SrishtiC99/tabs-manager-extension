@@ -1,7 +1,6 @@
 const tabs = await chrome.tabs.query({
     url: [
-        "https://developer.chrome.com/docs/webstore/*",
-        "https://developer.chrome.com/docs/extensions/*"
+        "https://*/*",
     ]
 });
 
@@ -14,8 +13,8 @@ const elements = new Set();
 for (const tab of tabs) {
     const element = template.content.firstElementChild.cloneNode(true);
 
-    const title = tab.title.split('-')[0].trim();
-    const pathname = new URL(tab.url).pathname.slice("/docs".length);
+    const title = tab.title.trim();
+    const pathname = new URL(tab.url).pathname.trim();
 
     console.log(title, pathname);
 
