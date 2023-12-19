@@ -8,16 +8,23 @@
     </head>
     <body>
         <template id="li_template">
-            <li>
+            <li class="tab_li">
                 <a>
                     <h4 class="title">Tab Title</h4>
                     <p class="pathname">Tab Pathname</p>
                 </a>
             </li>
         </template>
+        <template id="gr_template">
+            <li class="group_li">
+                <h4 class="group-title">Group Title</h4>
+                <button class="group_button">Group Tab</button>
+            </li>
+        </template>
         <h1>All Active Tabs</h1>
-        <button>Group Tabs</button>
         <ul></ul>
+        <button>Group All Tabs</button>
+        <ol></ol>
         <script src="./popup.js" type="module"></script>
     </body>
 </html>

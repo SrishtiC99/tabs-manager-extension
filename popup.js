@@ -31,24 +31,52 @@ for (const tab of tabs) {
 
 document.querySelector("ul").append(...elements);
 
+const groupTemplate = document.getElementById("gr_template");
+const groupElements = new Set();
+
+const uniqueMainDomains = Array.from(new Set(tabs.map(tab => getMainDomain(tab.url))));
+
+for (const mainDomain of uniqueMainDomains) {
+    const groupElement = groupTemplate.content.firstElementChild.cloneNode(true);
+    groupElement.querySelector(".group-title").textContent = mainDomain;
+    
+    const button = groupElement.querySelector(".group_button");
+    button.classList.add(mainDomain);
+    button.addEventListener("click", async () => groupThisTab(mainDomain));
+
+    groupElements.add(groupElement);
+}
+
+document.querySelector("ol").append(...groupElements);
+
 const button = document.querySelector("button");
 button.addEventListener("click", async () => {
-
-    const uniqueMainDomains = Array.from(new Set(tabs.map(tab => getMainDomain(tab.url))));
-    // Create tab groups based on unique hostnames
+    // Create tab groups based on unique domains
     for (const mainDomain of uniqueMainDomains) {
         const tabIds = tabs.filter(tab => getMainDomain(tab.url)  === mainDomain).map(tab => tab.id);
         const group = await chrome.tabs.group({ tabIds });
+
         await chrome.tabGroups.update(group, { title: mainDomain });
     }
 })
+
+
+// Function to group a specific tab group
+async function groupThisTab(domain) {
+    const tabIds = tabs.filter(tab => getMainDomain(tab.url) === domain).map(tab => tab.id);
+    const group = await chrome.tabs.group({ tabIds });
+
+    await chrome.tabGroups.update(group, { title: domain });
+}
+
 
 // Function to extract the main domain from a URL
 function getMainDomain(url) {
     try {
         const hostname = new URL(url).hostname;
         const parts = hostname.split('.');
-        return parts[parts.length - 2]; // Return the second-to-last part as the main domain
+        const mainDomain = parts[parts.length - 2];// Return the second-to-last part as the main domain
+        return mainDomain.charAt(0).toUpperCase() + mainDomain.substr(1).toLowerCase()
     } catch (error) {
         console.error('Error extracting main domain:', error);
         return null;
