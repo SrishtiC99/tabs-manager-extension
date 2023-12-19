@@ -23,6 +23,10 @@ provided by this chrome extension to increase your productivity:
 
  &nbsp; &nbsp; <img src="https://github.com/SrishtiC99/tabs-manager-extension/blob/main/images/Screenshot-4.png" />  
 
+- Close all Tabs from a particular domain by clicking on "Close" button from domain list.
+
+ &nbsp; &nbsp; <img src="https://github.com/SrishtiC99/tabs-manager-extension/blob/main/images/Screenshot-5.png" width="300" />
+
 TODOs:
 - [ ] replace getDomain method to a more effective method.
 - [ ] Add tab ungrouping functonality.

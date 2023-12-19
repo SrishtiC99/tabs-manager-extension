@@ -62,6 +62,10 @@ div {
     align-items: center;
 }
 
+.group_div {
+    gap: 10px;
+}
+
 .toggle_name {
     margin-right: 10px;
 }

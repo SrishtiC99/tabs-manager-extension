@@ -61,6 +61,10 @@ for (const mainDomain of uniqueMainDomains) {
     button.classList.add(mainDomain);
     button.addEventListener("click", async () => groupThisTab(mainDomain));
 
+    const closeButton = groupElement.querySelector(".close_group_button");
+    closeButton.classList.add(mainDomain);
+    closeButton.addEventListener("click", async () => closeTabGroup(mainDomain));
+
     groupElements.add(groupElement);
 }
 
@@ -76,6 +80,22 @@ button.addEventListener("click", async () => {
         await chrome.tabGroups.update(group, { title: mainDomain, collapsed: true });
     }
 })
+
+// Function to close a specific tab group
+async function closeTabGroup(domain) {
+    const tabIds = tabs.filter(tab => getMainDomain(tab.url) === domain).map(tab => tab.id);
+    await chrome.tabs.remove(tabIds);
+
+    // Remove the group element from the set
+    const groupElementToRemove = [...groupElements]
+        .find(entry => entry.querySelector(".group-title").textContent === domain);
+    if (groupElementToRemove) {
+        groupElements.delete(groupElementToRemove);
+
+        document.querySelector("ol").innerHTML = "";
+        document.querySelector("ol").append(...groupElements);
+    } 
+}
 
 
 // Function to group a specific tab group
