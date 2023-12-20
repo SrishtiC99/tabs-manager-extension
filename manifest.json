@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "Tabs Manager",
-    "description": "A chrome extension for managing tabs",
+    "name": "Organize Tabs By Domain Name",
+    "description": "A chrome extension for managing multiple opened tabs effectively by grouping them based on the domain name of the URL",
     "version": "1.0",
     "icons": {
         "16": "images/icon-16.png",
