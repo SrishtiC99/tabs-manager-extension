@@ -1,7 +1,10 @@
-### Tab Manager Chrome Extension
+## Organize Tabs By Domain Name
 
-Tab Manager is a chrome extension designed to enhance your browsing experience. Discover all the features
-provided by this chrome extension to increase your productivity:
+**Organize Tabs By Domain Name** is a `chrome extension` designed to enhance your browsing experience. Download this extension and discover all the features provided to enhance your productivity. 
+</br>
+</br>
+Check out this [chrome webstore link](https://chromewebstore.google.com/detail/organize-tabs-by-domain-n/doleffpmndnafafiidpjklcdefdmbbic) for installation. Do leave a **review** for further improvement. 
+Thank you 🙂
 
 #### Key Features
 
@@ -25,8 +28,9 @@ provided by this chrome extension to increase your productivity:
 
 - Close all Tabs from a particular domain by clicking on "Close" button from domain list.
 
- &nbsp; &nbsp; <img src="https://github.com/SrishtiC99/tabs-manager-extension/blob/main/images/Screenshot-5.png" width="300" />
+  &nbsp; &nbsp; <img src="https://github.com/SrishtiC99/tabs-manager-extension/blob/main/images/Screenshot-5.png" width="300" />
 
 TODOs:
 - [ ] replace getDomain method to a more effective method.
 - [ ] Add tab ungrouping functonality.
+- [ ] enhance css styling
